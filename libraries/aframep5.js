@@ -1735,7 +1735,7 @@ function World(id) {
 
 	this.camera = new Camera();
 	this.scene.appendChild(this.camera.holder);
-	
+
 	this.add = function(entity) {
 		this.scene.appendChild(entity.tag); 		
 	}
@@ -1832,6 +1832,7 @@ function Camera() {
 	// construct an entity holder
 	this.holder = document.createElement('a-entity');
 	this.holder.setAttribute('camera', '');
+    this.holder.setAttribute('id', 'screenCamera');
 	
 	// set position of camera
 	this.x = 0;
@@ -1859,6 +1860,8 @@ function Camera() {
 			_this.z = evt.detail.newData.z;
 		}
 	});
+
+
 
 	// add camera to our entity holder
 	this.holder.appendChild(this.cursor.tag);
