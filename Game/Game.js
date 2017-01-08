@@ -10,8 +10,9 @@ function Game (){
     //4 = virtual world
     this.gameOption = 0;
     this.input = createInput();
-    this.input.size(500);
+    this.input.size(480);
     this.input.position(350, 310);
+    // this.input.attribute("position", "relative");
 
     this.button = createButton('next');
     this.button.position(550, 370);
@@ -59,16 +60,32 @@ function Game (){
             world.scene.appendChild(this.text);
             this.camera.setAttribute('wasd-controls', 'enabled: false');
             this.camera.setAttribute('look-controls', 'enabled: false');
-
-
             this.menuBit = true;
+        }
+        else if (this.gameOption == 1 && this.menuBit == false){
+            this.text.setAttribute("bmfont-text", "text: Biggest obstacle?; color: white");
+            this.menuBit = true;
+        }
+        else if (this.gameOption == 2 && this.menuBit == false){
+            this.text.setAttribute("bmfont-text", "text: Overcome?; color: white");
+        }
+        else if (this.gameOption == 3 && this.menuBit == false){
+
+            this.text.setAttribute("position", "-0.75, 1.5, 2.1");
+            this.text.setAttribute("bmfont-text", "text:   All set!; color: white");
         }
     }
 }
 
 function next(){
-    var playerGoal = this.input.value();
-    console.log(playerGoal);
+    var answer = this.input.value();
+    console.log(answer);
     this.input.value('');
     this.gameOption++;
+
+    if (this.gameOption == 3){
+        //hide input text
+        this.input.remove();
+    }
+    this.menuBit = false;
 }
